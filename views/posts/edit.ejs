@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>딜모아-<%= post.title %></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700">
+    <link rel="stylesheet" href="../../fonts/icomoon/style.css">
+    
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/magnific-popup.css">
+    <link rel="stylesheet" href="../../css/jquery-ui.css">
+    <link rel="stylesheet" href="../../css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../../css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="../../css/aos.css">
+    <link rel="stylesheet" href="../../css/style.css">
+
+
+
+  </head>
+  <body>
+    <div class="site-wrap">
+    <% if(member) {%>
+      <%- include('../partial/navbar(login).ejs') %>
+    <% } else { %>
+      <%- include('../partial/navbar(logout).ejs') %>
+    <% }%>
+    <div class="site-section">
+    <div class="container">
+
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb p-1 pl-2 pr-2">
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-item"><a href="/posts">자유게시판</a></li>
+          <li class="breadcrumb-item"><a href="/posts/<%= post._id %>"><%= post.title %></a></li>
+        </ol>
+      </nav>
+
+      <form action="/posts/<%= post._id %>/edit" method="post">
+
+        <div class="form-group">
+          <label for="title">제목</label>
+          <input type="text" id="title" name="title" value="<%= post.title %>" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="body">내용</label>
+            <textarea id="body" name="body" rows="5" class="form-control"><%= post.body %></textarea>
+        </div>
+
+        <div>
+          <a class="btn btn-primary" href="/posts/<%= post._id %>">취소</a>
+          <button type="submit" class="btn btn-primary">저장</button>
+        </div>
+
+      </form>
+
+    </div>
+    </div>
+  </div>
+  <script src="../../js/jquery-3.3.1.min.js"></script>
+  <script src="../../js/jquery-ui.js"></script>
+  <script src="../../js/popper.min.js"></script>
+  <script src="../../js/bootstrap.min.js"></script>
+  <script src="../../js/owl.carousel.min.js"></script>
+  <script src="../../js/jquery.magnific-popup.min.js"></script>
+  <script src="../../js/aos.js"></script>
+
+  <script src="../../js/main.js"></script>
+  </body>
+</html>

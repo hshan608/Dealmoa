@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>회원가입</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700">
+    <link rel="stylesheet" href="fonts/icomoon/style.css">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+
+
+    <link rel="stylesheet" href="css/aos.css">
+
+    <link rel="stylesheet" href="css/style.css">
+
+  </head>
+  <body>
+
+  <div class="site-wrap">
+    <!--네비-->
+
+      <%- include('./partial/navbar(logout).ejs') %>
+
+    <div class="site-section">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-md-12">
+            <div class="border p-4 rounded" role="alert">
+              이미 아이디가 있으신가요? <a href="/login">로그인</a> 하러가기
+            </div>
+          </div>
+        </div>
+        <form class="" action="/join" method="post">
+        <div class="row">
+          <div class="col-md-6 mb-5 mb-md-0" style="margin: 0 auto;">
+            <h2 class="h3 mb-3 text-black">회 원 가 입</h2>
+            <div class="p-3 p-lg-5 border">
+              <div class="form-group">
+              </div>
+              <div class="form-group row">
+                <div class="col-md-12">
+                  <label for="c_fname" class="text-black">이 메 일<span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="email" name="email">
+                  <h6>이메일이 존재하지않으면 비밀번호를 찾으실 수 없습니다.</h4>
+                  <div class="col-md-6" style="margin:0 auto">
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-md-12">
+                  <label for="c_fname" class="text-black">이 름<span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="name" name="name">
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-md-12">
+                  <label for="c_fname" class="text-black">닉 네 임<span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="nick" name="nick">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <div class="col-md-12">
+                  <label for="c_companyname" class="text-black">비 밀 번 호<span class="text-danger">*</span></label>
+                  <input type="password" class="form-control" id="password" name="password" placeholder="비밀번호">
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-md-12">
+                  <input type="password" class="form-control" id="passwordConfirmation" name="passwordConfirmation" placeholder="비 밀 번 호 확 인">
+                </div>
+                <div class="col-md-6" style="margin:0 auto">
+                  <p></p>
+                  <input type="submit" class="btn btn-primary btn-sm btn-block" value="회 원 가 입"></input>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </form>
+      </div>
+    </div>
+         <!--푸터-->
+          <%- include('./partial/footer.ejs') %>
+      </div>
+    </footer>
+  </div>
+
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/jquery-ui.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.magnific-popup.min.js"></script>
+  <script src="js/aos.js"></script>
+
+  <script src="js/main.js"></script>
+
+  </body>
+</html>

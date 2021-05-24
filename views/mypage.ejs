@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>마이페이지-비밀번호 변경</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700">
+    <link rel="stylesheet" href="fonts/icomoon/style.css">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+
+
+    <link rel="stylesheet" href="css/aos.css">
+
+    <link rel="stylesheet" href="css/style.css">
+
+  </head>
+  <body>
+
+  <div class="site-wrap">
+    <!--네비-->
+      <%- include('./partial/navbar(login).ejs') %>
+    <div class="site-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 mb-5 mb-md-0" style="margin: 0 auto;">
+            <h2 class="h3 mb-3 text-black">정보수정</h2>
+            <form class="" action="/mypage" method="post">
+            <div class="p-3 p-lg-5 border">
+                <table style="margin:0 auto;">
+                    <tr>
+                        <th>
+                            <div class="col-md-12">
+                                <label for="c_fname" class="text-black" style="width: 100px;">이 메 일</label>
+                            </div>
+                        </th>
+                        <td>
+                            <h5>
+                                <span class="col-md-12"><%=member.email %>  </span>
+                            </h5>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <div class="col-md-12">
+                                <label for="c_fname" class="text-black" style="width: 100px;">이 름</label>
+                            </div>
+                        </th>
+                        <td>
+                            <h5>
+                                <span class="col-md-12" style="width: 100px;"><%= member.name %></span>
+                            </h5>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <div class="col-md-12">
+                                <label for="c_fname" class="text-black">닉 네 임</label>
+                            </div>
+                        </th>
+                        <td>
+                            <h5>
+                                <span class="col-md-12"><%= member.nick %></span>
+                            </h5>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <div class="col-md-12">
+                                <label for="c_fname" class="text-black">비밀번호 수정</label>
+                            </div>
+                        </th>
+                        <td style="width: 250px;">
+                            <input type="password" class="form-control" id="chpw" name="chpw" placeholder="비밀번호" onsubmit="return false">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td><input type="password" class="form-control" id="cfpw" name="cfpw" placeholder="비 밀 번 호 확 인" onsubmit="return false"></td>
+                    </tr>
+                </table>
+                <div class="col-md-6" style="margin:0 auto">
+                  <p></p>
+                  <input type="submit" class="btn btn-primary btn-sm btn-block" value="정 보 수 정"></input>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </form>
+      </div>
+    </div>
+         <!--푸터-->
+        <%- include('./partial/footer.ejs') %>
+      </div>
+    </footer>
+  </div>
+
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/jquery-ui.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.magnific-popup.min.js"></script>
+  <script src="js/aos.js"></script>
+
+  <script src="js/main.js"></script>
+
+  </body>
+</html>

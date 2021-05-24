@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>딜모아</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700">
+    <link rel="stylesheet" href="fonts/icomoon/style.css">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+
+
+    <link rel="stylesheet" href="css/aos.css">
+
+    <link rel="stylesheet" href="css/style.css">
+
+  </head>
+  <body>
+
+  <div class="site-wrap">
+    <!--네비-->
+    <% if(member) {%>
+      <%- include('./partial/navbar(login).ejs') %>
+    <% } else { %>
+      <%- include('./partial/navbar(logout).ejs') %>
+    <% }%>
+    <div class="site-section">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-md-12">
+            <div class="border p-4 rounded" role="alert">
+              딜모아에 오신걸 환영합니다~
+            </div>
+          </div>
+        </div>
+        <div class="site-section">
+            <div class="container">
+
+              <div class="row mb-5">
+                <div class="col-md-9 order-2" style="margin: 0 auto;">
+                    <div style="white-space: nowrap; padding-bottom: 5%;">
+                        <form method="POST" action="" class="site-block-mid-search" >
+                          <span class="icon icon-search2"></span>
+
+                          <input type="text" class="form-control border-2 naver" value="<%=query %>" name="query">
+
+                        </form>
+                      </div>
+
+
+                      <% if(data==false){ %>
+                        <div class="row">
+                          <div  style="margin: 0 auto;">
+
+
+                                 <h4 style="text-align:center">'<%= query %>'에 <br>대한 검색결과가 없습니다.</h4>
+                                 <p></p>
+                                 <h5 style="text-align:center">정확한 검색어 인지 확인하시고 다시 검색해 주세요.</h5>
+
+                                 <p></p>
+                                <ul>
+                                  <li>단어의 철자가 정확한지 확인해 주세요.</li>
+                                  <li>검색어의 띄어쓰기를 다르게 해보세요.</li>
+                                  <li><b>저희 딜모아는 네이버쇼핑, 11번가 검색결과를 제공합니다.</b></li>
+
+                                </ul>
+
+
+
+
+                          </div>
+                        </div>
+
+                      <% }else { %>
+                      <div class="dropdown mr-1 ml-md-auto" style="margin-bottom: 10px;">
+                        <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          정렬 방법
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+                          <a class="dropdown-item" href="/naversearch?query=<%=query %>&sort=asc&p=1&search=all">최저가 먼저보기</a>
+                          <a class="dropdown-item" href="/naversearch?query=<%=query %>&sort=dsc&p=1&search=all">최고가 먼저보기</a>
+                          <a class="dropdown-item" href="/naversearch?query=<%=query %>&sort=sim&p=1&search=naver">네이버 랭킹순위</a>
+                          <a class="dropdown-item" href="/naversearch?query=<%=query %>&sort=sim&p=1&search=11st">11번가 랭킹순위</a>
+                        </div>
+                      </div>
+
+                  <div class="row mb-5" >
+                    <% for (var i =a; i<a+12; i++) {
+                       if(data[i]==null){
+                        break;
+                       }else{%>
+                    <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
+                      <div class="block-4 text-center border">
+                        <figure class="block-4-image">
+                          <a href="<%- data[i].link %>"><img src="<%- data[i].image %>" alt="Image placeholder" class="img-fluid"></a>
+                        </figure>
+                        <div class="block-4-text p-4">
+                          <h3><a href="<%- data[i].link %>"><%- data[i].title %></a></h3>
+                          <p class="mb-0"><%- data[i].brand %></p>
+
+                          <p class="mb-0">
+                            <% if(data[i].ProductCode){ %>
+                              <img name="igg" src="images/11st.gif">
+                              <% }else{
+                                switch(data[i].mallName){
+                                    case "쿠팡": %>
+                                  <img name="igg" src="images/coupangl.gif">
+                                  <% break;
+                                    case "옥션": %>
+                                  <img name="igg" src="images/auctionl.gif">
+                                  <% break;
+                                    case "G마켓": %>
+                                  <img name="igg" src="images/gmarketl.gif">
+                                  <% break;
+                                    case "G9": %>
+                                  <img name="igg" src="images/g9l.gif">
+                                  <% break;
+                                    case "인터파크": %>
+                                  <img name="igg" src="images/interparkl.gif">
+                                  <% break;
+                                    case "11번가": %>
+                                  <img name="igg" src="images/11st.gif">
+                                  <% break;
+                                    case "1300K": %>
+                                  <img name="igg" src="images/1300kl.gif">
+                                  <% break;
+                                    case "AK몰": %>
+                                  <img name="igg" src="images/akmalll.gif">
+                                  <% break;
+                                    case "바보사랑": %>
+                                  <img name="igg" src="images/babosarangl.gif">
+                                  <% break;
+                                    case "보리보리": %>
+                                  <img name="igg" src="images/boril.gif">
+                                  <% break;
+                                    case "CJ몰": %>
+                                  <img name="igg" src="images/cjmalll.gif">
+                                  <% break;
+                                    case "다이소몰": %>
+                                  <img name="igg" src="images/daisol.gif">
+                                  <% break;
+                                    case "이랜드몰": %>
+                                  <img name="igg" src="images/elandl.gif">
+                                  <% break;
+                                    case "엘롯데": %>
+                                  <img name="igg" src="images/ellottel.gif">
+                                  <% break;
+                                    case "이마트몰": %>
+                                  <img name="igg" src="images/emartmalll.gif">
+                                  <% break;
+                                    case "하프클럽": %>
+                                  <img name="igg" src="images/halfclubl.gif">
+                                  <% break;
+                                    case "홈앤쇼핑": %>
+                                  <img name="igg" src="images/homeandl.gif">
+                                  <% break;
+                                    case "Homeplus": %>
+                                  <img name="igg" src="images/homeplusl.gif">
+                                  <% break;
+                                    case "현대Hmall": %>
+                                  <img name="igg" src="images/hyundaimalll.gif">
+                                  <% break;
+                                    case "롯데면세점": %>
+                                  <img name="igg" src="images/lottedfsl.gif">
+                                  <% break;
+                                    case "롯데홈쇼핑": %>
+                                  <img name="igg" src="images/lottehomel.gif">
+                                  <% break;
+                                    case "롯데마트": %>
+                                  <img name="igg" src="images/lottemartl.gif">
+                                  <% break;
+                                    case "롯데ON": %>
+                                  <img name="igg" src="images/lotteonl.png">
+                                  <% break;
+                                    case "NS몰": %>
+                                  <img name="igg" src="images/nsl.gif">
+                                  <% break;
+                                    case "올리브영": %>
+                                  <img name="igg" src="images/olivel.gif">
+                                  <% break;
+                                    case "Qoo10": %>
+                                  <img name="igg" src="images/qoo10l.gif">
+                                  <% break;
+                                    case "신세계몰": %>
+                                  <img name="igg" src="images/ssg2l.gif">
+                                  <% break;
+                                    case "SSG닷컴": %>
+                                  <img name="igg" src="images/ssgl.gif">
+                                  <% break;
+                                    case "더현대닷컴": %>
+                                  <img name="igg" src="images/thehyundail.gif">
+                                  <% break;
+                                    case "티몬": %>
+                                  <img name="igg" src="images/tmonl.gif">
+                                  <% break;
+                                    case "위메프": %>
+                                  <img name="igg" src="images/wel.gif">
+                                  <% break;
+                                    case "예스24": %>
+                                  <img name="igg" src="images/yes24l.gif">
+                                  <% break;
+                                    case "GSSHOP": %>
+                                  <img name="igg" src="images/gsshopl.gif">
+                                  <% break;
+                                     default: %>
+                                  <img name="igg" src="images/naver.jpg">
+                                  <%- data[i].mallName %>
+
+                              <% }} %>
+
+                            </p>
+                          <p class="text-primary font-weight-bold">최저가 <%- data[i].lprice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %>원</p>
+
+                          <a href="/sharewrite?id=<%= i %>"><span class="icon icon-heart-o"></span></a>
+
+                        </div>
+                      </div>
+                    </div>
+
+                  <% }} %>
+                </div>
+                  <div class="row" data-aos="fade-up"  style="margin:0 auto;">
+                    <div class="col-md-12 text-center">
+                      <div class="site-block-27" >
+                        <ul>
+                        <% if(parseInt(p)==1) { %>
+                          <li class="active"><span><a href="/naversearch?query=<%=query%>&sort=<%= sort %>&p=1&search=<%= search %>">1</a></span></li>
+                          <li><a href="/naversearch?query=<%=query%>&sort=<%= sort %>&p=2&search=<%=search %>">2</a></li>
+                          <li><a href="/naversearch?query=<%=query%>&sort=<%= sort %>&p=3&search=<%=search %>">3</a></li>
+                          <li><a href="/naversearch?query=<%=query%>&sort=<%= sort %>&p=4&search=<%=search %>">4</a></li>
+                          <li><a href="/naversearch?query=<%=query%>&sort=<%= sort %>&p=5&search=<%=search %>">5</a></li>
+                        <% }else if(parseInt(p)==2) { %>
+                          <li><a href="/naversearch?query=<%=query%>&sort=<%= sort %>&p=1&search=<%=search %>">1</a></li>
+                          <li class="active"><span><a href="/naversearch?query=<%=query%>&sort=<%= sort %>&p=2&search=<%=search %>">2</a></span></li>
+                          <li><a href="/naversearch?query=<%=query%>&sort=<%= sort %>&p=3&search=<%=search %>">3</a></li>
+                          <li><a href="/naversearch?query=<%=query%>&sort=<%= sort %>&p=4&search=<%=search %>">4</a></li>
+                          <li><a href="/naversearch?query=<%=query%>&sort=<%= sort %>&p=5&search=<%=search %>">5</a></li>
+                        <% }else { %>
+                          <% for (var i=parseInt(p)-2; i<parseInt(p)+3; i++) { %>
+                            <% if (i==p) { %>
+                              <li class="active"><span><a href="/naversearch?query=<%=query%>&sort=<%= sort %>&p=<%=i %>&search=<%=search %>"><%= i %></a></span></li>
+                            <% } else{ %>
+                              <li><a href="/naversearch?query=<%=query%>&sort=<%= sort %>&p=<%=i %>&search=<%=search %>"><%= i %></a></li>
+                            <% } %>
+                          <% } %>
+                        <% } %>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <% } %>
+
+
+
+                </div>
+              </div>
+                  <!--푸터-->
+                <%- include('./partial/footer.ejs') %>
+            </div>
+        </div>
+
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/jquery-ui.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.magnific-popup.min.js"></script>
+  <script src="js/aos.js"></script>
+
+  <script src="js/main.js"></script>
+
+  </body>
+</html>

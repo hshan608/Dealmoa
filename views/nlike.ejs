@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>딜모아</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700">
+    <link rel="stylesheet" href="fonts/icomoon/style.css">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+
+
+    <link rel="stylesheet" href="css/aos.css">
+
+    <link rel="stylesheet" href="css/style.css">
+
+  </head>
+  <body>
+
+  <div class="site-wrap">
+    <!--네비-->
+    <% if(member) {%>
+      <%- include('./partial/navbar(login).ejs') %>
+    <% } else { %>
+      <%- include('./partial/navbar(logout).ejs') %>
+    <% }%>
+    <div class="site-section">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-md-12">
+            <div class="border p-4 rounded" role="alert">
+              현재 실시간 좋아요 리스트 입니다.
+            </div>
+          </div>
+        </div>
+        <div class="site-section">
+            <div class="container">
+
+              <div class="row mb-5">
+                <div class="col-md-9 order-2" style="margin: 0 auto;">
+
+                    <div style="white-space: nowrap; padding-bottom: 5%;">
+                        <form method="POST" action="" class="site-block-mid-search" >
+                        </form>
+                      </div>
+
+
+                  <div class="row mb-5" >
+                    <% for (var i =0; i<likes.length; i++){ %>
+                    <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
+                      <div class="block-4 text-center border">
+                        <figure class="block-4-image">
+                          <a href="<%- likes[i].link %>"><img src="<%- likes[i].picture %>" alt="Image placeholder" class="img-fluid"></a>
+                        </figure>
+                        <div class="block-4-text p-4">
+                          <h3><a href="<%- likes[i].link %>"><%- likes[i].title %></a></h3>
+                          <p class="text-primary font-weight-bold">최저가 : <%- likes[i].lprice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %>원</p>
+                          <p></p>
+                          <p class="mb-0"><%- likes[i].comment %></p>
+                          <p class="text-primary font-weight-bold"><%= likes[i].nick %></p>
+                        </div>
+                      </div>
+                    </div>
+
+                  <% } %>
+
+                  </div>
+                  <div class="row" data-aos="fade-up"  style="margin:0 auto;">
+                    <div class="col-md-12 text-center">
+                      <div class="site-block-27" >
+                        <ul>
+                          <% if(parseInt(p)==1) { %>
+                            <li class="active"><span><a href="/nlike?p=1">1</a></span></li>
+                            <li><a href="/nlike?p=2">2</a></li>
+                            <li><a href="/nlike?p=3">3</a></li>
+                            <li><a href="/nlike?p=4">4</a></li>
+                            <li><a href="/nlike?p=5">5</a></li>
+                          <% }else if(parseInt(p)==2) { %>
+                            <li><a href="/nlike?p=1">1</a></li>
+                            <li class="active"><span><a href="/nlike?p=2">2</a></span></li>
+                            <li><a href="/nlike?p=3">3</a></li>
+                            <li><a href="/nlike?p=4">4</a></li>
+                            <li><a href="/nlike?p=5">5</a></li>
+                          <% }else { %>
+                            <% for (var i=parseInt(p)-2; i<parseInt(p)+3; i++) { %>
+                              <% if (i==p) { %>
+                                <li class="active"><span><a href="/nlike?p=<%=i %>"><%= i %></a></span></li>
+                              <% } else{ %>
+                                <li><a href="/nlike?p=<%= i %>"><%= i %></a></li>
+                            <% } %>
+                          <% } %>
+                        <% } %>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                  <!--푸터-->
+                <%- include('./partial/footer.ejs') %>
+            </div>
+        </div>
+
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/jquery-ui.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.magnific-popup.min.js"></script>
+  <script src="js/aos.js"></script>
+
+  <script src="js/main.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>내가쓴글</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700">
+    <link rel="stylesheet" href="fonts/icomoon/style.css">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+
+
+    <link rel="stylesheet" href="css/aos.css">
+
+    <link rel="stylesheet" href="css/style.css">
+
+  </head>
+  <body>
+    <% if(member) {%>
+      <%- include('./partial/navbar(login).ejs') %>
+    <% } else { %>
+      <%- include('./partial/navbar(logout).ejs') %>
+    <% }%>
+      <!--메뉴-->
+    </header>
+    <div class="site-section">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-md-12">
+            <div class="border p-4 rounded" role="alert">
+              <%= member.nick %> 님의 게시글 목록입니다.
+            </div>
+          </div>
+        </div>
+        <div class="row" >
+            <table class="table">
+              <tr>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>등록일</th>
+              </tr>
+              <% for (var i =0; i<posts.length; i++) { %>
+              <div>
+              <tr>
+                <td>
+                  <a href="/posts/<%= posts[i]._id %>"><%= posts[i].title %></a>
+                </td>
+                <td class="author">
+                  <%= member.nick %>
+                </td>
+                <td class="data"
+                ><span><%= moment(posts[i].createdAt).format('YYYY-MM-DD h:mm a') %></span>
+              </td>
+              </tr>
+              </div>
+              <% } %>
+            </table>
+              <div class="row" data-aos="fade-up"  style="margin:0 auto;">
+                <div class="col-md-12 text-center">
+                  <div class="site-block-27" >
+                    <ul>
+                    <% if(parseInt(p)==1) { %>
+                      <li class="active"><span><a href="/mypost?p=1">1</a></span></li>
+                      <li><a href="/mypost?p=2">2</a></li>
+                      <li><a href="/mypost?p=3">3</a></li>
+                      <li><a href="/mypost?p=4">4</a></li>
+                      <li><a href="/mypost?p=5">5</a></li>
+                    <% }else if(parseInt(p)==2) { %>
+                      <li><a href="/mypost?p=1">1</a></li>
+                      <li class="active"><span><a href="/mypost?p=2">2</a></span></li>
+                      <li><a href="/mypost?p=3">3</a></li>
+                      <li><a href="/mypost?p=4">4</a></li>
+                      <li><a href="/mypost?p=5">5</a></li>
+                    <% }else { %>
+                      <% for (var i=parseInt(p)-2; i<parseInt(p)+3; i++) { %>
+                        <% if (i==p) { %>
+                          <li class="active"><span><a href="/mypost?p=<%=i %>"><%= i %></a></span></li>
+                        <% } else{ %>
+                          <li><a href="/mypost?p=<%= i %>"><%= i %></a></li>
+                        <% } %>
+                      <% } %>
+                    <% } %>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+
+
+        </div>
+        <!-- </form> -->
+      </div>
+    </div>
+    <footer
+      <%- include('./partial/footer.ejs') %>
+    </footer>
+  </div>
+
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/jquery-ui.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.magnific-popup.min.js"></script>
+  <script src="js/aos.js"></script>
+
+  <script src="js/main.js"></script>
+
+  </body>
+</html>
